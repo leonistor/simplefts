@@ -19,13 +19,19 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	log.Printf("Loaded %d documents in %v", len(docs), time.Since(start))
+	log.Printf("Loaded %d documents in %dms", len(docs), time.Since(start).Milliseconds())
 
 	start = time.Now()
-	// matchedIDs := search(docs, query)
-	// log.Printf("Search found %d documents in %v", len(matchedIDs), time.Since(start))
+	idx := make(index)
+	idx.add(docs)
+	log.Printf("Indexed %d documents in %dms", len(docs), time.Since(start).Milliseconds())
 
-	// for _, doc := range matchedIDs {
-	// log.Printf("%d\t%s\n", doc.ID, doc.Text)
-	// }
+	start = time.Now()
+	matchedIDs := idx.search(query)
+	log.Printf("Search found %d documents in %dms", len(matchedIDs), time.Since(start).Milliseconds())
+
+	for _, id := range matchedIDs {
+		doc := docs[id]
+		log.Printf("%d\t%s\n", id, doc.Title)
+	}
 }
