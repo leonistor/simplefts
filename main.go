@@ -22,10 +22,10 @@ func main() {
 	log.Printf("Loaded %d documents in %v", len(docs), time.Since(start))
 
 	start = time.Now()
-	matchedIDs := search(docs, query)
-	log.Printf("Search found %d documents in %v", len(matchedIDs), time.Since(start))
+	// matchedIDs := search(docs, query)
+	// log.Printf("Search found %d documents in %v", len(matchedIDs), time.Since(start))
 
-	for _, doc := range matchedIDs {
-		log.Printf("%d\t%s\n", doc.ID, doc.Text)
-	}
+	// for _, doc := range matchedIDs {
+	// log.Printf("%d\t%s\n", doc.ID, doc.Text)
+	// }
 }
